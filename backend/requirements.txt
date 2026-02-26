@@ -1,0 +1,9 @@
+mongoose
+dotenv
+express
+cors
+nodemon
+jsonwebtoken
+bcryptjs
+multer
+npm install express mongoose cors dotenv multer bcryptjs jsonwebtoken

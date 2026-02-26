@@ -1,0 +1,252 @@
+/* ================================
+   DASHBOARD WRAPPER
+================================ */
+.dash-wrapper {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ================================
+   HEADER
+================================ */
+.dash-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.dash-header h1 {
+  font-size: 22px;
+  margin: 0;
+}
+
+.dash-header p {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+/* Filters */
+.dash-filter-group {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.dash-filter select {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  font-size: 13px;
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+.dash-filter select:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+/* ================================
+   STAT CARDS
+================================ */
+.dash-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 16px;
+}
+
+.dash-card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 16px;
+  border: 1px solid #e5e7eb;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.dash-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+}
+
+.dash-card-label {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.dash-card-value {
+  font-size: 24px;
+  font-weight: 700;
+  margin-top: 4px;
+}
+
+.dash-card-note {
+  font-size: 11px;
+  margin-top: 6px;
+  color: #6b7280;
+}
+
+/* ================================
+   PANELS
+================================ */
+.dash-bottom {
+  display: grid;
+  grid-template-columns: 2fr 1.4fr;
+  gap: 16px;
+}
+
+.dash-panel {
+  background: #ffffff;
+  border-radius: 14px;
+  border: 1px solid #e5e7eb;
+  display: flex;
+  flex-direction: column;
+}
+
+.dash-panel-head {
+  padding: 14px 16px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.dash-panel-head h2 {
+  font-size: 16px;
+  margin: 0;
+}
+
+.dash-panel-head p {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.dash-panel-body {
+  padding: 12px 16px;
+  overflow: auto;
+}
+
+/* ================================
+   TABLE
+================================ */
+.table-scroll {
+  overflow-x: auto;
+}
+
+.dash-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.dash-table th,
+.dash-table td {
+  padding: 10px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.dash-table tr:hover {
+  background: #f9fafb;
+}
+
+/* ================================
+   ACTIVITY
+================================ */
+.dash-activity {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.dash-activity-title {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.dash-activity-meta {
+  font-size: 11px;
+  color: #6b7280;
+}
+
+/* ================================
+   MISC
+================================ */
+.dash-empty,
+.dash-hint {
+  font-size: 12px;
+  color: #9ca3af;
+  text-align: center;
+}
+
+/* ================================
+   RESPONSIVE
+================================ */
+@media (max-width: 900px) {
+  .dash-bottom {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .dash-wrapper {
+    padding: 8px;
+  }
+
+  .dash-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* Report types / buttons enhancements */
+.report-types {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.report-type-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  background: #ffffff;
+  cursor: pointer;
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+  text-align: left;
+}
+
+.report-type-btn .report-icon {
+  font-size: 18px;
+  width: 30px;
+  text-align: center;
+}
+
+.report-type-btn .report-label {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.report-type-btn:hover {
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+  transform: translateY(-2px);
+}
+
+.report-type-btn.active {
+  background: linear-gradient(90deg, #2563eb, #4f46e5);
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 12px 28px rgba(37, 99, 235, 0.12);
+}
+
+.change-pass-form input {
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  margin-top: 6px;
+}
