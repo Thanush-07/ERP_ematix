@@ -2,7 +2,7 @@ import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import "./styles//InstitutionLayout.css";
+import "./styles/InstitutionLayout.css";
 
 export default function InstitutionLayout() {
   const [open, setOpen] = useState(false);

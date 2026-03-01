@@ -9,6 +9,7 @@ const API_URL = "http://localhost:5000/api/auth/login";
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [role, setRole] = useState("staff");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -25,22 +26,31 @@ export default function Login() {
       // 2) Get token and user from response
       const { token, user } = res.data;
 
+      // Filter: Admins should use /admin
+      const adminRoles = ["company_admin", "institution_admin", "branch_admin"];
+      if (adminRoles.includes(user.role)) {
+        setError("Access denied. Please use the administrator login page.");
+        setLoading(false);
+        return;
+      }
+
+      // Check if selected role matches user role
+      if (user.role !== role) {
+        setError(`Access denied. This account is not registered as ${role === 'staff' ? 'Faculty' : 'Student'}.`);
+        setLoading(false);
+        return;
+      }
+
       // 3) Save to localStorage
       localStorage.setItem("token", token);
       localStorage.setItem("user", JSON.stringify(user));
 
       // 4) Redirect based on role
-      if (user.role === "company_admin") {
-        navigate("/company-admin/dashboard");
-      } else if (user.role === "institution_admin") {
-        navigate("/institution/dashboard");
-      } else if (user.role === "branch_admin") {
-        navigate("/branch/dashboard");
-      } else if (user.role === "staff") {
+      if (user.role === "staff") {
         navigate("/staff/dashboard");
-      } else if (user.role === "parent") {
-        navigate("/parent/dashboard");
-      } 
+      } else if (user.role === "student") {
+        navigate("/student/dashboard");
+      }
     } catch (err) {
       setError(err.response?.data?.message || "Invalid email or password");
     } finally {
@@ -74,11 +84,23 @@ export default function Login() {
               <label>Email</label>
               <input
                 type="email"
-                placeholder="admin@school.com"
+                placeholder="email@example.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
               />
+            </div>
+
+            <div className="field">
+              <label>Category</label>
+              <select
+                className="role-select"
+                value={role}
+                onChange={(e) => setRole(e.target.value)}
+              >
+                <option value="staff">Staff / Faculty</option>
+                <option value="student">Student</option>
+              </select>
             </div>
 
             <div className="field">
@@ -106,8 +128,8 @@ export default function Login() {
               <span>or</span>
             </div>
 
-            <button 
-              type="button" 
+            <button
+              type="button"
               className="parent-btn"
               onClick={() => navigate("/parent/login")}
             >

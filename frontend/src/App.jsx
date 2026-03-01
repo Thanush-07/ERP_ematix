@@ -1,33 +1,35 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 // authentication
 import Login from "./pages/auth/Login";
+import AdminLogin from "./pages/auth/AdminLogin";
+import StudentLogin from "./pages/auth/StudentLogin";
 import ForgotPassword from "./pages/auth/ForgotPassword";
 import ResetPassword from "./pages/auth/ResetPassword";
 // company admin
-import CompanyLayout from "./pages/Company_admin/components/CompanyLayout";
-import CompanyAdminDashboard from "./pages/Company_admin/Dashboard";
-import Institutions from "./pages/Company_admin/Institutions";
-import Users from "./pages/Company_admin/Users";
-import GlobalReport from "./pages/Company_admin/GlobalReport";
+import CompanyLayout from "./pages/admin/Company_admin/components/CompanyLayout";
+import CompanyAdminDashboard from "./pages/admin/Company_admin/Dashboard";
+import Institutions from "./pages/admin/Company_admin/Institutions";
+import Users from "./pages/admin/Company_admin/Users";
+import GlobalReport from "./pages/admin/Company_admin/GlobalReport";
 // Institution admin
-import InstitutionLayout from "./pages/Institution_admin/InstitutionLayout";
-import InstitutionDashboard from "./pages/Institution_admin/Dashboard";
-import InstitutionBranches from "./pages/Institution_admin/Branches";
-import BranchAdmins from "./pages/Institution_admin/Branches";
-import InstitutionReports from "./pages/Institution_admin/Reports";
-import ChangePassword from "./pages/Institution_admin/ChangePassword";
+import InstitutionLayout from "./pages/admin/Institution_admin/InstitutionLayout";
+import InstitutionDashboard from "./pages/admin/Institution_admin/Dashboard";
+import InstitutionBranches from "./pages/admin/Institution_admin/Branches";
+import BranchAdmins from "./pages/admin/Institution_admin/Branches";
+import InstitutionReports from "./pages/admin/Institution_admin/Reports";
+import ChangePassword from "./pages/admin/Institution_admin/ChangePassword";
 // Branch admin
-import BranchLayout from "./pages/Branch_admin/BranchLayout";
-import BranchDashboard from "./pages/Branch_admin/Dashboard";
-import BranchStudents from "./pages/Branch_admin/Students";
-import BranchFees from "./pages/Branch_admin/Fees";
-import BranchSales from "./pages/Branch_admin/Sales";
-import BranchInventory from "./pages/Branch_admin/Inventory";
-import BranchExpenses from "./pages/Branch_admin/Expenses";
-import BranchBuses from "./pages/Branch_admin/Buses";
-import BranchReports from "./pages/Branch_admin/Reports";
-import BranchChangePassword from "./pages/Branch_admin/ChangePasswordNew";
-import BranchStaffManagement from "./pages/Branch_admin/StaffManagement";
+import BranchLayout from "./pages/admin/Branch_admin/BranchLayout";
+import BranchDashboard from "./pages/admin/Branch_admin/Dashboard";
+import BranchStudents from "./pages/admin/Branch_admin/Students";
+import BranchFees from "./pages/admin/Branch_admin/Fees";
+import BranchSales from "./pages/admin/Branch_admin/Sales";
+import BranchInventory from "./pages/admin/Branch_admin/Inventory";
+import BranchExpenses from "./pages/admin/Branch_admin/Expenses";
+import BranchBuses from "./pages/admin/Branch_admin/Buses";
+import BranchReports from "./pages/admin/Branch_admin/Reports";
+import BranchChangePassword from "./pages/admin/Branch_admin/ChangePasswordNew";
+import BranchStaffManagement from "./pages/admin/Branch_admin/StaffManagement";
 // Other roles
 import StaffLayout from "./pages/Staff/StaffLayout";
 import StaffDashboard from "./pages/Staff/Dashboard";
@@ -36,7 +38,17 @@ import StaffReports from "./pages/Staff/Reports";
 import StaffCollectFee from "./pages/Staff/CollectFee";
 import StaffChangePassword from "./pages/Staff/ChangePassword";
 import ParentLogin from "./pages/Parent/ParentLogin";
+import ParentLayout from "./pages/Parent/ParentLayout";
 import ParentDashboard from "./pages/Parent/Dashboard";
+import ParentReports from "./pages/Parent/Reports";
+import ParentFees from "./pages/Parent/FeeDetails";
+import ParentProfile from "./pages/Parent/StudentProfile";
+// Student roles
+import StudentLayout from "./pages/student/StudentLayout";
+import StudentDashboard from "./pages/student/Dashboard";
+import StudentProfile from "./pages/student/Profile";
+import StudentFees from "./pages/student/Fees";
+import StudentCirculars from "./pages/student/Circulars";
 
 function App() {
   return (
@@ -44,6 +56,7 @@ function App() {
       <Routes>
         {/* Auth */}
         <Route path="/login" element={<Login />} />
+        <Route path="/admin" element={<AdminLogin />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/reset-password/:token" element={<ResetPassword />} />
 
@@ -87,7 +100,21 @@ function App() {
 
         {/* Parent */}
         <Route path="/parent/login" element={<ParentLogin />} />
-        <Route path="/parent/dashboard" element={<ParentDashboard />} />
+        <Route path="/parent" element={<ParentLayout />}>
+          <Route path="dashboard" element={<ParentDashboard />} />
+          <Route path="reports" element={<ParentReports />} />
+          <Route path="fees" element={<ParentFees />} />
+          <Route path="profile" element={<ParentProfile />} />
+        </Route>
+
+        {/* Student */}
+        <Route path="/student/login" element={<StudentLogin />} />
+        <Route path="/student" element={<StudentLayout />}>
+          <Route path="dashboard" element={<StudentDashboard />} />
+          <Route path="profile" element={<StudentProfile />} />
+          <Route path="fees" element={<StudentFees />} />
+          <Route path="circulars" element={<StudentCirculars />} />
+        </Route>
 
         {/* Fallback */}
         <Route path="*" element={<Navigate to="/login" />} />

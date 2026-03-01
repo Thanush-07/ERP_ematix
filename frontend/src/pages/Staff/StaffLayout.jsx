@@ -1,6 +1,6 @@
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import "../Company_admin/styles/CompanyLayout.css";
+import "../admin/Company_admin/styles/CompanyLayout.css";
 
 export default function StaffLayout() {
   const [open, setOpen] = useState(false);
